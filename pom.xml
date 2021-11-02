@@ -390,7 +390,7 @@
         <repository>
             <id>github</id>
             <name>GitHub rakesh635 Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/rakesh635/devops</url>
+            <url>https://maven.pkg.github.com/DevOps-Capability/petclinic</url>
         </repository>
     </distributionManagement>
 
