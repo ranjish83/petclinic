@@ -1,4 +1,4 @@
-name: Move assigned card
+name: Assigned Issue - Issue branch creation and move to inprogress
 on:
   issues:
     types:
@@ -17,5 +17,5 @@ jobs:
       - uses: alex-page/github-project-automation-plus@5bcba1c1c091a222584d10913e5c060d32c44044
         with:
           project: Docs Work
-          column: In Progress
+          column: In progress
           repo-token: ${{ secrets.TOKEN_GITHUB }}
