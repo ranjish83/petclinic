@@ -1,4 +1,4 @@
-name: Auto Assign to Project(s)
+name: Auto Assign an issue to 'to-do' list of the Project 
 
 on:
   issues:
