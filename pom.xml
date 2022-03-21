@@ -122,6 +122,17 @@
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
     </dependency>
+    
+    <!-- Azure function - start -->
+    <!-- https://mvnrepository.com/artifact/com.microsoft.azure/azure-functions-maven-plugin -->
+    <dependency>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-functions-maven-plugin</artifactId>
+        <version>1.8.0</version>
+    </dependency>
+    <!-- Azure function - end -->
+    
+    
   </dependencies>
 
   <build>
