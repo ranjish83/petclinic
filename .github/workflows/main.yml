@@ -13,6 +13,12 @@ on:
     branches: [ main ]
     paths-ignore:
       - '.github/**'
+      
+env:
+  AZURE_FUNCTIONAPP_NAME: TestFunctionAppRakesh      # set this to your function app name on Azure
+  POM_XML_DIRECTORY: '.'                     # set this to the directory which contains pom.xml file
+  POM_FUNCTIONAPP_NAME: TestFunctionAppRakesh        # set this to the function app name in your local development environment
+  JAVA_VERSION: '1.8.x'   
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -72,3 +78,18 @@ jobs:
         run: mvn help:effective-settings
       - name: Publish Package
         run: mvn clean deploy
+      
+      - name: 'Restore Project Dependencies Using Mvn'
+        shell: bash
+        run: |
+          pushd './${{ env.POM_XML_DIRECTORY }}'
+          mvn clean package
+          mvn azure-functions:package
+          popd
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: './${{ env.POM_XML_DIRECTORY }}/target/azure-functions/${{ env.POM_FUNCTIONAPP_NAME }}'
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
