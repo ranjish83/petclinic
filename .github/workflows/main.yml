@@ -16,7 +16,7 @@ on:
       
 env:
   AZURE_FUNCTIONAPP_NAME: TestFunctionAppRakesh      # set this to your function app name on Azure
-  POM_XML_DIRECTORY: '.'                     # set this to the directory which contains pom.xml file
+  POM_XML_DIRECTORY: '/home/runner/work/petclinic/petclinic/'                     # set this to the directory which contains pom.xml file
   POM_FUNCTIONAPP_NAME: spring-petclinic-2.5.0-SNAPSHOT.jar        # set this to the function app name in your local development environment
   JAVA_VERSION: '1.8.x'   
 
@@ -90,5 +90,5 @@ jobs:
         id: fa
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          package: '${{ env.POM_XML_DIRECTORY }}/petclinic/target/${{ env.POM_FUNCTIONAPP_NAME }}'
+          package: '${{ env.POM_XML_DIRECTORY }}/target/${{ env.POM_FUNCTIONAPP_NAME }}'
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
