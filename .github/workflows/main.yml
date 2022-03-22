@@ -18,7 +18,7 @@ env:
   AZURE_FUNCTIONAPP_NAME: TestFunctionAppRakesh      # set this to your function app name on Azure
   POM_XML_DIRECTORY: '.'                     # set this to the directory which contains pom.xml file
   POM_FUNCTIONAPP_NAME: spring-petclinic        # set this to the function app name in your local development environment
-  JAVA_VERSION: '1.8.x'   
+  JAVA_VERSION: '1.11.x'   
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -91,7 +91,7 @@ jobs:
         id: fa
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          package: './${{ env.POM_XML_DIRECTORY }}/target/${{ env.POM_FUNCTIONAPP_NAME }}'
-#          package: './${{ env.POM_XML_DIRECTORY }}/target/}'
+#          package: './${{ env.POM_XML_DIRECTORY }}/target/${{ env.POM_FUNCTIONAPP_NAME }}'
+          package: '~/work/petclinic/petclinic/target/}'
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
           respect-pom-xml: true
