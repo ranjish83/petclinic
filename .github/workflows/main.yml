@@ -89,7 +89,6 @@ jobs:
         run: |
           pushd './${{ env.PACKAGE_DIRECTORY }}'
           mvn clean package
-#          mvn azure-functions:package
           popd
           pwd
 #      - name: 'Run Azure Functions Action'
