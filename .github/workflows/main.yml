@@ -18,6 +18,7 @@ env:
   AZURE_FUNCTIONAPP_NAME: TestFunctionAppRakesh # set this to your function app name on Azure
   PACKAGE_DIRECTORY: '.' # set this to the directory which contains pom.xml file
   JAVA_VERSION: '11' # set this to the java version to use
+  POM_FUNCTIONAPP_NAME: TestFunctionAppRakesh
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -84,6 +85,7 @@ jobs:
         run: |
           pushd './${{ env.PACKAGE_DIRECTORY }}'
           mvn clean package
+          mvn azure-functions:package
           popd
           pwd
 #      - name: 'Run Azure Functions Action'
@@ -103,5 +105,6 @@ jobs:
           app-name: 'TestFunctionAppRakesh'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-          package: '${{ env.PACKAGE_DIRECTORY }}'
+#          package: '${{ env.PACKAGE_DIRECTORY }}'
+          package: './${{ env.PACKAGE_DIRECTORY }}/target/azure-functions/${{ env.POM_FUNCTIONAPP_NAME }}'
 #          respect-pom-xml: true
