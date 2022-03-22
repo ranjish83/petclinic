@@ -68,9 +68,9 @@ jobs:
         #run: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rakesh635_CICD -Dsonar.host.url=${{ secrets.DEV_SONARQUBEURL }} -Dsonar.login=${{ secrets.DEV_SONARQUBETOKEN }}
 #        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rakesh635_CICD
 
-#      - name: Unit Test
-#        run: |
-#          pwd
+      - name: Unit Test
+        run: |
+          pwd
 #          mvn test --file pom.xml
       - name: Build with Maven
         run: mvn -B package --file pom.xml 
