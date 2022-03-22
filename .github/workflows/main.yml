@@ -15,10 +15,14 @@ on:
       - '.github/**'
       
 env:
-  AZURE_FUNCTIONAPP_NAME: TestFunctionAppRakesh # set this to your function app name on Azure
-  PACKAGE_DIRECTORY: '.' # set this to the directory which contains pom.xml file
-  JAVA_VERSION: '11' # set this to the java version to use
-  POM_FUNCTIONAPP_NAME: TestFunctionAppRakesh
+#  AZURE_FUNCTIONAPP_NAME: TestFunctionAppRakesh # set this to your function app name on Azure
+#  PACKAGE_DIRECTORY: '${{ github.workspace }}' # set this to the directory which contains pom.xml file
+#  JAVA_VERSION: '11' # set this to the java version to use
+#  POM_FUNCTIONAPP_NAME: TestFunctionAppRakesh
+  
+  AZURE_WEBAPP_NAME: TestFunctionAppRakesh  # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: ${{ github.workspace }} # set this to the path to your web app project
+  JAVA_VERSION: '1.8'                # set this to the node version to use
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -85,7 +89,7 @@ jobs:
         run: |
           pushd './${{ env.PACKAGE_DIRECTORY }}'
           mvn clean package
-          mvn azure-functions:package
+#          mvn azure-functions:package
           popd
           pwd
 #      - name: 'Run Azure Functions Action'
@@ -98,13 +102,18 @@ jobs:
 #          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
 #          respect-pom-xml: true
           
-      - name: 'Run Azure Functions Action'
-        uses: Azure/functions-action@v1
-        id: fa
-        with:
-          app-name: 'TestFunctionAppRakesh'
-          slot-name: 'production'
+#      - name: 'Run Azure Functions Action'
+#        uses: Azure/functions-action@v1
+#        id: fa
+#        with:
+#          app-name: 'TestFunctionAppRakesh'
+#          slot-name: 'production'
+#          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+#          package: './${{ env.PACKAGE_DIRECTORY }}/target/azure-functions/${{ env.POM_FUNCTIONAPP_NAME }}'
+
+      - name: 'Deploy to Azure WebApp'
+        uses: azure/webapps-deploy@v2
+        with: 
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-#          package: '${{ env.PACKAGE_DIRECTORY }}'
-          package: './${{ env.PACKAGE_DIRECTORY }}/target/azure-functions/${{ env.POM_FUNCTIONAPP_NAME }}'
-#          respect-pom-xml: true
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/target/*.jar'
