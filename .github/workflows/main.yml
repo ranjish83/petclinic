@@ -93,3 +93,4 @@ jobs:
 #          package: './${{ env.POM_XML_DIRECTORY }}/target/${{ env.POM_FUNCTIONAPP_NAME }}'
           package: './${{ env.POM_XML_DIRECTORY }}/target/}'
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+          respect-pom-xml: true
