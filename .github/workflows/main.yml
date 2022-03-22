@@ -85,12 +85,13 @@ jobs:
           pushd './${{ env.POM_XML_DIRECTORY }}'
           mvn clean package
           popd
+          pwd
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-#          package: './${{ env.POM_XML_DIRECTORY }}/target/${{ env.POM_FUNCTIONAPP_NAME }}'
-          package: './${{ env.POM_XML_DIRECTORY }}/target/}'
+          package: './${{ env.POM_XML_DIRECTORY }}/target/${{ env.POM_FUNCTIONAPP_NAME }}'
+#          package: './${{ env.POM_XML_DIRECTORY }}/target/}'
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
           respect-pom-xml: true
