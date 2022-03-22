@@ -123,6 +123,13 @@
       <optional>true</optional>
     </dependency>
     
+    <!-- Azure Function - start -->
+    <dependency>
+      <groupId>com.microsoft.azure.functions</groupId>
+      <artifactId>azure-functions-java-library</artifactId>
+      <version>${azure.functions.java.library.version}</version>
+    </dependency>  
+    <!-- Azure Function - end -->
     
   </dependencies>
 
