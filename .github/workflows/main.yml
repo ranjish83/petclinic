@@ -82,7 +82,7 @@ jobs:
       - name: 'Restore Project Dependencies Using Mvn'
         shell: bash
         run: |
-          pushd './${{ env.POM_XML_DIRECTORY }}'
+          pushd './${{ env.PACKAGE_DIRECTORY }}'
           mvn clean package
           popd
           pwd
