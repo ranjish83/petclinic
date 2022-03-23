@@ -20,9 +20,9 @@ env:
 #  JAVA_VERSION: '11' # set this to the java version to use
 #  POM_FUNCTIONAPP_NAME: TestFunctionAppRakesh
   
-  AZURE_WEBAPP_NAME: 'TestFunctionAppRakesh'  # set this to your application's name
+  AZURE_WEBAPP_NAME: 'testWebAppRakes'  # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: ${{ github.workspace }} # set this to the path to your web app project
-  JAVA_VERSION: '1.8'                # set this to the node version to use
+  JAVA_VERSION: '1.11'                # set this to the node version to use
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
