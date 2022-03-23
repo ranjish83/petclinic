@@ -57,4 +57,4 @@ jobs:
           app-name: 'testWebAppRakes'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-          package: '*.war'
+          package: '*.jar'
